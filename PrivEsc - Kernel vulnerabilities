@@ -1,0 +1,9 @@
+# windows exploit suggester using systeminfo output
+python windows-exploit-suggester.py --upadte
+python windows-exploit-suggester.py --database <db name> --systeminfo <filename>
+
+Windows Vulnerabilities
+
+For exploit sources: https://github.com/SecWiki/windows-kernel-exploits/
+
+https://guif.re/windowseop#EoP%208:%20Kernel%20vulnerabilities
