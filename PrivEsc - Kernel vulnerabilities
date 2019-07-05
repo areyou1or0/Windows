@@ -25,7 +25,10 @@ Windows Vulnerabilities
 
 For exploit sources: https://github.com/SecWiki/windows-kernel-exploits/
 
+For more neat exploit table, check the following page:
 https://guif.re/windowseop#EoP%208:%20Kernel%20vulnerabilities
+
+# WINDOWS Exploits
 
 # MS16-135 (Windows Kernel Mode Drivers)
 Server 2016
