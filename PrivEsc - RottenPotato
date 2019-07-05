@@ -1,0 +1,6 @@
+
+
+# on meterpreter session
+> getuid
+> load incognito
+> lis
