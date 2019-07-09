@@ -1,0 +1,12 @@
+# Compile windows exploit (for 32 bit)
+i686-w64-mingw32-gcc exploit.c -lws2_32 -o exploit.exe
+
+# Compile windows exploit 
+i686-w64-mingw32-gcc exploit.c -o exploit.exe
+
+# compile C++
+i686-w64-mingw32-g++ exploit.cpp -o exploit.exe
+
+# Compile python scripts to executables:
+wine ~/.wine/drive_c/Python27/Scripts/pyinstaller.exe --onefile 18176.py
+
