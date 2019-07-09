@@ -7,4 +7,14 @@ i686-w64-mingw32-g++ exploit.cpp -o exploit.exe
 # Compile python scripts to executables:
 wine ~/.wine/drive_c/Python27/Scripts/pyinstaller.exe --onefile 18176.py
 
+-------------------------------------------------------------------------------
+
+# OS version, architecture, installed patches
+systeminfo
+
+# hostname
+hostname
+
+# 
+
 
