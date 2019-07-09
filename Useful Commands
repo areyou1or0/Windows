@@ -15,6 +15,26 @@ systeminfo
 # hostname
 hostname
 
-# 
+# Current username
+echo %username%
 
+# info about a user
+net users <username>
 
+# Network information
+ipconfig /all & route print & arp -a
+
+# List open connections
+netstat -aton
+
+# Firewall info
+netsh firewall show state
+netsh firewall show config
+
+# List scheduled tasks
+schtasks /query /fo LIST /v
+
+# List windows services
+net start
+wmic service list brief
+tasklist /SVC
