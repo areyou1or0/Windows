@@ -32,6 +32,9 @@ net localgroup administrators <username> /add
 # Change password of a user
 net user <username> <password>
 
+# Other logged in Users
+qwinsta
+
 # List users
 net user
 
