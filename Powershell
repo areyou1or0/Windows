@@ -1,1 +1,163 @@
 # PowerSploit
+
+------------------------------------------------------------Basics-----------------------------------------
+
+# Definitions
+Powershell ISE: Editor/Scripting Environment (GUI)
+Cmdlets: task based commands
+
+# Lists all Alias, Function, cmdlets
+Get-Command	
+
+# Lists all cmdlets
+Get-Command -CommandType cmdlet	
+
+# similar to type or cat
+Get-Content <filename>	
+
+# similar to grep or findstr
+Get-Content <file name> | Select-String <string>	
+
+# list available modules
+Get-Module -ListAvailable	
+
+# List the cmdlets for the module PKI
+Get-Command -Module PKI	
+
+# Display Help of <cmdlet>
+Get-Help <cmdlet>	
+
+# Start a process
+Start-Process <process name>	
+
+# Stop a process
+Stop-Process <process name>	
+
+# Get the Id, Name, CPU info of a process
+Get-Process  -Name <process name>	
+
+
+-----------------------------------------Variables-----------------------------------------
+
+# define variable
+$<variable>	
+
+# returns an object
+Get-<something> 	
+
+
+-----------------------------------------Process-----------------------------------------
+
+Start Notepad.exe
+Start-Process notepad.exe
+Start-Process -FilePath notepad.exe
+Get-Process -Name notepad
+Stop-Process -Name notepad
+Stop-Process -Id <process id>
+
+
+# Process Example
+Start-Process Taskmgr	Open Task Manager
+	
+	
+-----------------------------------------	Get-Content -----------------------------------------
+
+Get-Content note.txt
+Get-Content note.txt | Select-String "remoting"
+
+-----------------------------------------Functions-----------------------------------------
+
+Start powershell_ise.exe
+function notepad-bus{Start-Process -FilePath powershell_ise.exe}
+notepad-bus
+
+
+-----------------------------------------Modules-----------------------------------------
+
+Get-Module -ListAvailable
+Import_Module <modulename or modulepath>
+Export-ModuleMember
+
+… To be Continued
+
+-----------------------------------------Registry Access with PowerShell-----------------------------------------
+HKLM and HKCU are available by default
+
+Get-PSProvider	-PSProvider Registry	
+
+# list the details of registry key
+Get-Item	
+
+# list subkeys of a key
+Get-ChildItem	 
+
+# list subkeys of a key recursively
+Get-ChildItem -Recurse	
+
+# view values of registry keys
+Get-ItemProperty	
+
+# edit/create/rename values in registry
+Set-Item	
+
+Set-ItemProperty	
+New-Item	
+Rename-Item	
+New-ItemProperty	
+Rename-ItemProperty	
+
+-----------------------------------------Accessing other Registry hives-----------------------------------------
+# create new PSDrives
+New-PSDrive -Name <nameofpsdrive> -PSProvider Registry -Root Registry::HKEY_USERS	
+
+# setting the location to Registry ROOT
+Set-Location Registry::	 
+
+-----------------------------------------PowerShell Remoting-----------------------------------------
+
+Possible Scenarios:
+
+# In a trusted domain, you have target/global admin credentials.
+Enter-PSSession –Computername <target ip> -Credential <computer name>\<username>	
+
+# In a trusted domain, you have target/global admin shell.
+Enter-PSSession <target ip>	
+
+# To/From a computer not part of a trusted domain, you have target/global admin credentials. 
+# first add the target machine as trusted host on your machine. Then check it and use Remoting
+Set-Item wsman:localhost\client\trustedhosts -Value <target ip or name> 	
+Get-Item wsman:\localhost\Client\TrustedHosts	
+Enter-PSSession -Credential <computer name>\<username>	
+
+# To/From a computer not part of a trusted domain, you have target/global admin shell.
+# first add the target machine as trusted host on your machine. Then check it and use Remoting
+Set-Item wsman:localhost\client\trustedhosts -Value <target ip or name> 	
+Get-Item wsman:\localhost\Client\TrustedHosts	
+Enter-PSSession <target ip>	
+
+-----------------------------------------Invoke Command-----------------------------------------
+# Run commands and scripts on remote computer(s), in disconnected sessions (v3), as background job and more. 
+# Needs admin on local computer
+Invoke-Command -ComputerName (Get-Content <list of servers> ) -FilePath <path to script> - ArgumentList <arg1,arg2>	
+
+# Running script as a job
+# Receive the results
+Invoke-Command -ComputerName (Get-Content <list of servers> ) -FilePath <path to script> -AsJob	
+Get-Job			
+Receive-Job
+
+# If you get access to a machine, look for Disconnected Remoting Sessions, you may get access to whole lot of new machines. 
+Get-PSSession	
+Connect-PSSession
+  
+
+-----------------------------------------Useful RedTeaming Github Directories-----------------------------------------
+https://github.com/samratashok/nishang
+https://github.com/PowerShellMafia/PowerSploit
+
+References:
+https://media.blackhat.com/eu-13/briefings/Mittal/bh-eu-13-powershell-for-penetration-mittal-slides.pdf
+
+
+
+
