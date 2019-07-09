@@ -55,6 +55,16 @@ reg add "hklm\system\currentcontrolset\control\terminal server" /f /v fDenyTSCon
 netsh firewall set service remoteadmin enable
 netsh firewall set service remotedesktop enable
 
+# Running Tasks
+tasklist
+
+# Kill a task
+taskkill f /pid 7777
+taskkill /f /im "Taskmgr.ex"
+
+# run command through smb when user/password is known
+smbexec.py  domainName/userName:"password"@ipAddress
+
 # run an exploit on cmd.exe
 powershell -ExecutionPolicy ByPass -command "<command here>"
 powershell -ExecutionPolicy ByPass -command ./test.ps1
