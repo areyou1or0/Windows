@@ -1,14 +1,23 @@
-# Compile windows exploit 
-i686-w64-mingw32-gcc 18176.c -lws2_32 -o 18176.exe
 
-# compile C++
-i686-w64-mingw32-g++ exploit.cpp -o exploit.exe
+# "man"-pages in windows
+help dir
 
-# Compile python scripts to executables:
-wine ~/.wine/drive_c/Python27/Scripts/pyinstaller.exe --onefile 18176.py
+# execute 2 commands
+dir & whoami
 
--------------------------------------------------------------------------------
-# show file contents:
+# Delete file
+del
+
+# Create folder/directory
+md folderName
+
+# Show hidden files
+dir /A
+
+# grep files
+findstr file.txt
+
+# show file contents
 type file
 
 # delete file
@@ -34,6 +43,9 @@ netsh firewall set opmode disable
 
 # Permissions on a folder recursively
 cacls *.* /t /e /g domainname\administrator:f
+
+# map share to a drive
+net use z: \\<ip address>\SYSVOL
 
 # enable RDP access
 reg add "hklm\system\currentcontrolset\control\terminal server" /f /v fDenyTSConnections /t REG_DWORD /d 0
