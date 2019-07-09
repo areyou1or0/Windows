@@ -27,3 +27,6 @@ schtasks /query /fo LIST /v
 net start
 wmic service list brief
 tasklist /SVC
+
+# who is the domain controller
+echo %logonserver%
