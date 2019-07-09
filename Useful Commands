@@ -11,7 +11,7 @@ del
 # Create folder/directory
 md folderName
 
-# Show hidden files
+# Show hidden files 
 dir /A
 
 # grep files
