@@ -2,3 +2,30 @@
 C:\Windows/system32\eula.txt
 C:\Windows\System32\license.rtf
 C:\Windows\WindowsUpdate.log
+# stores users' passwords in a hashed format (in LM hash and NTLM hash).
+C:\Windows\repair\sam
+C:\Windows\System32\config\RegBack\SAM
+C:\Windows\repair\system
+C:\Windows\repair\software
+C:\Windows\repair\security
+C:\Windows\debug\NetSetup.log (AD domain name, DC name, internal IP, DA account)
+C:\Windows\iis6.log (5,6 or 7)
+C:\Windows\system32\logfiles\httperr\httperr1.log
+C:\Windows\\boot.ini	
+C:\Windows\win.ini	
+C:\sysprep.inf
+C:\sysprep\sysprep.inf
+C:\sysprep\sysprep.xml
+C:\Windows\Panther\Unattended.xml
+C:\inetpub\wwwroot\Web.config
+C:\Windows\system32\config\AppEvent.Evt (Application log)
+C:\Windows\system32\config\SecEvent.Evt (Security log)
+C:\Windows\system32\config\default.sav
+C:\Windows\system32\config\security.sav
+C:\Windows\system32\config\software.sav
+C:\Windows\system32\config\system.sav
+C:\Windows\system32\inetsrv\config\applicationHost.config
+C:\Windows\system32\inetsrv\config\schema\ASPNET_schema.xml
+C:\Windows\System32\drivers\etc\hosts (dns entries)
+C:\Windows\System32\drivers\etc\networks (network settings)
+C:\Windows\system32\config\SAM (only really useful if you have access to the files while the machine is off)
